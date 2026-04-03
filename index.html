@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Geek Shop | Build Your End-Game</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#00363f",
+              "primary-container": "#bd00ff",
+              "surface-bright": "#393939",
+              "tertiary": "#c4c5db",
+              "surface-dim": "#131313",
+              "inverse-on-surface": "#313030",
+              "surface-container-low": "#1c1b1b",
+              "background": "#131313",
+              "on-secondary-fixed-variant": "#004e5a",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed": "#181a2b",
+              "surface-container-lowest": "#0e0e0e",
+              "on-tertiary-container": "#fffeff",
+              "on-secondary-fixed": "#001f25",
+              "tertiary-fixed-dim": "#c4c5db",
+              "tertiary-fixed": "#e1e1f7",
+              "error-container": "#93000a",
+              "primary": "#ecb2ff",
+              "surface-container": "#20201f",
+              "primary-fixed": "#f8d8ff",
+              "inverse-primary": "#9900cf",
+              "secondary-fixed": "#a5eeff",
+              "on-primary-fixed-variant": "#74009f",
+              "on-secondary-container": "#005f6d",
+              "on-background": "#e5e2e1",
+              "on-surface-variant": "#d4c0d7",
+              "primary-fixed-dim": "#ecb2ff",
+              "on-primary-fixed": "#320047",
+              "secondary": "#b9f1ff",
+              "outline-variant": "#514255",
+              "surface-container-high": "#2a2a2a",
+              "surface-container-highest": "#353535",
+              "inverse-surface": "#e5e2e1",
+              "surface-variant": "#353535",
+              "surface-tint": "#ecb2ff",
+              "secondary-fixed-dim": "#00daf8",
+              "secondary-container": "#00e0ff",
+              "on-surface": "#e5e2e1",
+              "on-primary-container": "#ffffff",
+              "on-tertiary-fixed-variant": "#444558",
+              "error": "#ffb4ab",
+              "on-error": "#690005",
+              "on-primary": "#520071",
+              "outline": "#9d8ba0",
+              "on-tertiary": "#2d2f40",
+              "surface": "#131313",
+              "tertiary-container": "#737488"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(19, 19, 19, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #ecb2ff 0%, #bd00ff 100%);
+        }
+        .recessed-tray {
+            background-color: #1c1b1b;
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #1c1b1b 25%, #2a2a2a 50%, #1c1b1b 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        #cart-slider {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%);
+        }
+        #cart-slider.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,0,0,0.4)]">
+<div class="flex items-center justify-between px-8 py-4 max-w-[1440px] mx-auto">
+<a class="text-2xl font-bold tracking-tighter text-[#ecb2ff] font-headline" href="index.html">The Geek Shop</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight" href="products.html?category=Keyboard and Mouse">Keyboards &amp; Mouse</a>
+<a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight" href="products.html?category=Switches">Switches</a>
+<a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight" href="products.html?category=Keycaps">Keycaps</a>
+<a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight" href="products.html?category=Accessories and Collectables">Accessories</a>
+<a class="text-gray-400 hover:text-white transition-colors font-headline tracking-tight" href="products.html?category=Collectibles">Collectibles</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative active:scale-95 transition-transform hover:text-[#b9f1ff] transition-all duration-300" id="cart-link">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-2 -right-2 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" id="cart-count">0</span>
+</button>
+<a class="active:scale-95 transition-transform hover:text-[#b9f1ff] transition-all duration-300" href="admin.html">
+<span class="material-symbols-outlined">account_circle</span>
+</a>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden px-8 md:px-20 py-12">
+<div class="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-6 z-10">
+<span class="label-sm uppercase tracking-widest text-primary font-bold mb-4 block">Enthusiast Grade Hardware</span>
+<h1 class="text-6xl md:text-8xl font-headline font-bold leading-[0.9] tracking-tighter mb-8">
+                        Build Your <br/><span class="text-transparent bg-clip-text kinetic-gradient">End-Game</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-md mb-10 leading-relaxed">
+                        Curated mechanical keyboards, bespoke switches, and artisan keycaps designed for the ultimate tactile experience. From Dhaka to your desk.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="kinetic-gradient text-white px-8 py-4 rounded-lg font-bold tracking-tight active:scale-95 transition-transform shadow-lg shadow-primary-container/20 flex items-center" href="products.html">
+                            Shop Collections
+                        </a>
+<button class="bg-surface-variant/20 border border-outline-variant/15 px-8 py-4 rounded-lg font-bold text-on-surface hover:bg-surface-variant/30 transition-all">
+                            View Group Buys
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-6 relative h-[600px]">
+<div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full"></div>
+<img class="w-full h-full object-cover rounded-2xl shadow-2xl relative z-10 scale-105 rotate-2 hover:rotate-0 transition-transform duration-700" data-alt="Premium custom mechanical keyboard setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiElMNO9Hr9iK2yAOl-2ohBzBAQcjsrYj-sDJTMz_AdNQCfj5T0NR6NOJjWj6WijYXJkGr4rasG63d3MyTCjXRvSc6jhKL5YckPPx4gEb3gYlAaQhKF2RfwRU0k0IbEmrxLHrrga_FkJoegHYwkH8a32kx8OHpFSsdi83nh5tNZiqCvXuXP4Bx4mYsZYR6SufSTcAW6hGh_QNQI8HhSNj-AGMehVNzevqqg3qwv-ywqcuuY_Cc-JflpTIdrmeePUJ5Etbp_n7B6aFj"/>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="py-24 px-8 bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex items-end justify-between mb-12">
+<h2 class="text-4xl font-headline font-bold tracking-tight">The Essentials</h2>
+<div class="h-px flex-1 mx-8 bg-outline-variant/15 hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]" id="categories-grid">
+<div class="cursor-pointer md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-xl bg-surface-container-highest" onclick="window.location.href='products.html?category=Keyboard and Mouse'">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" data-alt="Keyboards" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQL-ZIsLbFDGWhfPDjbaOxHDepclbyBiydd6Nff-oCkpF8Fc8XuIRfqo_SYjwdgjrd1WufAifbsBFujeW1K3t-rQWr2DBAS_w-NuSqJt2iJMJ-JZBc3hLChOJqNKi3Qg3WmBniL9sIvWG6TEZVG9ifb35FB6PhHuELFrokEgemuwdaLNIFdYEK_j7TmQXVNOxChOunWXNCtn4E9BG0jjnQw7F-5nexQx03w6987yAEhgcYoP1NWmYfhf7sa0M00EXOuOnISldqDu0x"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<h3 class="text-3xl font-headline font-bold mb-2">Keyboards &amp; Mouse</h3>
+<p class="text-secondary font-medium uppercase tracking-widest text-xs">Explore Performance Gear</p>
+</div>
+</div>
+<div class="cursor-pointer group relative overflow-hidden rounded-xl bg-surface-container-highest" onclick="window.location.href='products.html?category=Keycaps'">
+<img alt="Keycaps" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVBeCyB_ry62KLpZlwMO1P96QGvLwsmA1v_wwJc2CUN-jE9sVm78asSvNe5hKxkvBQ4GGF3qdNGGyWOrig205p4XUg_b_fFoU_Em_-dj2AXVrC9KdPRUi7r3R4SjtRNgWVWpKkAGYdTeNuzImDZCb_A0WPeqUgdffhBDnKE6QKsNI5WfEtMbSocIKxliC5s5yVpPGjrgcZc39OR-uAs8vmAzXEPneeJgz5sbRFvUlyV5sst_iu4cx6f7uy6oHL58uQDr8BgTg0g501"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-headline font-bold mb-1">Keycaps</h3>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">New Drop</span>
+</div>
+</div>
+<div class="cursor-pointer group relative overflow-hidden rounded-xl bg-surface-container-highest" onclick="window.location.href='products.html?category=Switches'">
+<img alt="Switches" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5eHkED3HoCKatpb-RTpyW3kZm8l1CLt2R7H3Wlxl7YWFEhItAsz6yqjSKeaAFTqkrjqi6atPHGxfrlAO3FEtBBAtMrcrzwkEiBOJUTRC76ETxxIWTFaUZwtRQ_AT9dAEOPHrFaYpqdkvOApJ9XLs442N9M5scWWhy0y3HrKCWxFkGlGrqvrPi5-2GbYXWoJo8HI-d-MawbfKJfuJeCg_4ptFHSnR4WpeckPKlPpzz-ko8-oTXBeSgue9wUsAWYSZcWHYpBDEgM9-R"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-headline font-bold mb-1">Switches</h3>
+<span class="text-secondary text-xs font-bold uppercase tracking-widest">Linear &amp; Tactile</span>
+</div>
+</div>
+<div class="cursor-pointer group relative overflow-hidden rounded-xl bg-surface-container-highest" onclick="window.location.href='products.html?category=Accessories and Collectables'">
+<img alt="Accessories" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBJPg2COejiFdXyD4T9UhrCFncGt4e8HQoUzJboVm878flv5aqZJpPfuGBxEmzIeo3jt_QdaB4uo9lB3jZ1w3KLRmVwuoMxeHjNVexhJuCblOYCuFnjJOK9NjsJ22Wev7lrBQJRpxc-OsLhGHspz2wq_v_slx1DMyH2iXuKn2Q5u_9N-zmXivXGZ0M_cLzp_44RXOSc62kyIrxA0v7DKHC7k9Lv4tqXAzJJU6G56cgk5BjhWO4R1ZwEd1eLuPo5cmwamMzsn-JKxhf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-headline font-bold mb-1">Accessories</h3>
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Tools &amp; Mats</span>
+</div>
+</div>
+<div class="cursor-pointer group relative overflow-hidden rounded-xl bg-surface-container-highest" onclick="window.location.href='products.html?category=Collectibles'">
+<img alt="Collectibles" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNTdcvWPGMePA-VxTlQ5k-DtSDIwBA1n4wp5yuz2xcV5V11nW5JRG1xsT3mTA8Rh6r71yLcjw_L1VzF2Njxh_T2i-SwqOKy__Dcnrp0vpGcCbizUJDrmHuJfCGwvhVkM3NCDB5NILq9ObgcTpF-daQ6etfr6k0RJjAtukPSAhVrGuwfTipusOeXsWMk7tzrjaCFuRMQmQFo31f4dXxa-0rKNQtw9cu7qFx5Ixy97RobVReap3HPZgomed3af41sN2Uzkreh9nHm8Xt"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-headline font-bold mb-1">Collectibles</h3>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">Limited Runs</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- New Arrivals Section -->
+<section class="py-24 px-8 bg-background">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
+<div>
+<h2 class="text-4xl font-headline font-bold tracking-tight">New Arrivals</h2>
+<p class="text-on-surface-variant mt-2">The latest gear just landed in the warehouse.</p>
+</div>
+<a class="text-primary font-bold hover:underline" href="products.html">View All New Gear</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="interest-products">
+<!-- Products dynamically loaded here -->
+</div>
+</div>
+</section>
+<!-- Group Buys & Pre-orders -->
+<section class="py-24 px-8 bg-surface-container-lowest border-y border-outline-variant/10">
+<div class="max-w-[1440px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1">
+<img class="rounded-2xl border border-primary/20 shadow-2xl shadow-primary/10" data-alt="Upcoming keyboard render" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOpCq_OEMXZGT95PARyCukb-PiW1uT3nANPvMtm6O68IFREuueTa12KMFhj77jUmlBw2YTwIbzn2JdnJOBaJtyIP8b1QaOXxOx1fHJnlQlkNKQXb2I4gbkebhJSTb8n8dUWRBpXjO5_8Yex5T-WyM6zpKvCgxDCpUk-gvK6X_4YpnIa-Llnz5uAAVv_6WHXyIOeMStA24Pnf7c4oxoXUVkZsc3Ha7qsbOvSI1J6xzBWmE6bo9QhngsNpbeE7IfwMtVbEFn_Vp8FIhn"/>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-6 tracking-tight">Active Group Buys</h2>
+<p class="text-on-surface-variant text-lg mb-8">
+                        Secure exclusive enthusiast hardware before they hit the retail market. Group buys are the only way to get these limited-run products.
+                    </p>
+<div class="space-y-6 mb-10">
+<div class="p-6 recessed-tray rounded-xl border-l-4 border-primary">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-bold">GMK Nightshade Keycap Set</h4>
+<span class="text-secondary-fixed-dim text-sm font-bold uppercase tracking-widest">Ending In 4 Days</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+<p class="text-on-surface-variant text-sm">75% Funded (Tier 1 Met)</p>
+</div>
+<div class="p-6 recessed-tray rounded-xl border-l-4 border-secondary">
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-xl font-bold">Tofu65 2.0 Edition</h4>
+<span class="text-on-surface-variant text-sm font-bold uppercase tracking-widest">Fulfillment Q3 2024</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden mb-2">
+<div class="bg-secondary h-full w-1/2"></div>
+</div>
+<p class="text-on-surface-variant text-sm">50% Funding Complete</p>
+</div>
+</div>
+<button class="text-white bg-primary-container px-10 py-4 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(189,0,255,0.4)] transition-all">
+                        Explore All Pre-orders
+                    </button>
+</div>
+</div>
+</section>
+<!-- Why The Geek Shop? -->
+<section class="py-24 px-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[100px]"></div>
+<div class="max-w-[1440px] mx-auto text-center relative z-10">
+<h2 class="text-4xl md:text-6xl font-headline font-bold mb-6 tracking-tighter">Why <span class="text-primary">The Geek Shop?</span></h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto mb-16 text-lg">We are Bangladesh's first dedicated hub for mechanical keyboard enthusiasts, providing high-end components without the import hassle.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+<div class="p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">local_shipping</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Express Local Logistics</h3>
+<p class="text-on-surface-variant">Skip the international shipping fees and customs delays. We handle the imports, you get the gear in 48 hours across BD.</p>
+</div>
+<div class="p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">verified</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Verified Authentic</h3>
+<p class="text-on-surface-variant">We partner directly with manufacturers like KBDfans, Wuque Studio, and Gateron to ensure 100% authenticity on every switch.</p>
+</div>
+<div class="p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary mb-6">engineering</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Built by Enthusiasts</h3>
+<p class="text-on-surface-variant">Every product is tested by our local builders. We don't just sell kits; we provide guidance to help you find your signature sound.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Cart Slider -->
+<div class="fixed top-0 right-0 w-full md:w-[400px] h-full bg-surface-container-high z-[100] shadow-2xl flex flex-col" id="cart-slider">
+<div class="p-6 border-b border-outline-variant/10 flex items-center justify-between">
+<h2 class="text-xl font-headline font-bold">Your Cart</h2>
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors" id="close-cart">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items">
+<!-- Cart items dynamically rendered here -->
+<p class="text-center text-on-surface-variant py-20" id="cart-empty">Your cart is empty.</p>
+</div>
+<div class="p-6 border-t border-outline-variant/10 bg-surface-container-highest">
+<div class="flex justify-between items-center mb-6 text-xl font-bold font-headline" id="cart-total">
+<span>Total:</span>
+<span>৳0</span>
+</div>
+<button class="w-full kinetic-gradient py-4 rounded-xl font-bold text-white shadow-lg active:scale-95 transition-transform" id="checkout-cart">
+                Checkout
+            </button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#0e0e0e] w-full py-12 px-8">
+<div class="max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full border-t border-[#353535]/20 pt-12 mb-12">
+<div>
+<div class="text-2xl font-bold tracking-tighter text-[#ecb2ff] font-headline mb-6">The Geek Shop</div>
+<p class="text-gray-500 font-body text-sm leading-relaxed max-w-sm">
+                        Premier destination for mechanical keyboard enthusiasts in Bangladesh. Elevating your typing experience one switch at a time.
+                    </p>
+</div>
+<div>
+<h5 class="font-headline text-white font-bold mb-6 text-sm uppercase tracking-widest">Categories</h5>
+<ul class="space-y-4">
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="products.html?category=Keyboard and Mouse">Keyboards &amp; Mouse</a></li>
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="products.html?category=Switches">Switches</a></li>
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="products.html?category=Keycaps">Keycaps</a></li>
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="products.html?category=Accessories and Collectables">Accessories</a></li>
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="products.html?category=Collectibles">Collectibles</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-headline text-white font-bold mb-6 text-sm uppercase tracking-widest">Support</h5>
+<ul class="space-y-4">
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="order-status.html">Order Status</a></li>
+<li><a class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 hover:text-white transition-colors opacity-80 hover:opacity-100" href="#">Returns &amp; Refunds</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-outline-variant/10">
+<div class="font-['Inter'] text-sm uppercase tracking-widest text-gray-500 mb-4 md:mb-0">
+                    © 2024 The Geek Shop BD. Built for Enthusiasts.
+                </div>
+<div class="flex gap-6">
+<span class="text-xs text-gray-600 font-bold tracking-widest">VISA</span>
+<span class="text-xs text-gray-600 font-bold tracking-widest">BKASH</span>
+<span class="text-xs text-gray-600 font-bold tracking-widest">NAGAD</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- FAB Action -->
+<button class="fixed bottom-8 right-8 kinetic-gradient w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-white z-40 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</button>
+<!-- External Configuration -->
+<script src="config.js"></script>
+<!-- Firebase & App Logic -->
+<script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+        import { getFirestore, collection, getDocs, doc, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
+
+        // Use global firebaseConfig from config.js
+        const app = initializeApp(window.firebaseConfig);
+        const db = getFirestore(app);
+        const productsMap = new Map();
+
+        // ====== CART SYSTEM ======
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cart = getCart();
+            const countEl = document.getElementById('cart-count');
+            if (countEl) countEl.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
+
+            const itemsContainer = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const emptyMsg = document.getElementById('cart-empty');
+            if (!itemsContainer) return;
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = '';
+                if (totalEl) totalEl.innerHTML = '<span>Total:</span><span>৳0</span>';
+                if (emptyMsg) emptyMsg.style.display = 'block';
+                return;
+            }
+
+            if (emptyMsg) emptyMsg.style.display = 'none';
+            itemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.qty;
+                total += itemTotal;
+                const div = document.createElement('div');
+                div.className = 'flex gap-4 items-center bg-surface-container rounded-lg p-3';
+                div.innerHTML = `
+                    <img src="${item.image}" class="w-16 h-16 object-cover rounded" alt="${item.name}">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm line-clamp-1">${item.name}</h4>
+                        <p class="text-xs text-on-surface-variant">৳${item.price} × ${item.qty}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="qty-minus w-6 h-6 flex items-center justify-center bg-surface-variant rounded">-</button>
+                        <span class="text-sm font-bold">${item.qty}</span>
+                        <button class="qty-plus w-6 h-6 flex items-center justify-center bg-surface-variant rounded">+</button>
+                    </div>
+                `;
+                
+                div.querySelector('.qty-minus').addEventListener('click', () => updateCartQuantity(item.id, item.qty - 1));
+                div.querySelector('.qty-plus').addEventListener('click', () => updateCartQuantity(item.id, item.qty + 1));
+                itemsContainer.appendChild(div);
+            });
+
+            if (totalEl) totalEl.innerHTML = `<span>Total:</span><span>৳${total}</span>`;
+        }
+
+        function updateCartQuantity(productId, newQty) {
+            let cart = getCart();
+            if (newQty < 1) {
+                cart = cart.filter(i => i.id !== productId);
+            } else {
+                const item = cart.find(i => i.id === productId);
+                if (item) item.qty = newQty;
+            }
+            saveCart(cart);
+        }
+
+        function addToCart(productId) {
+            const product = productsMap.get(productId);
+            if (!product) return;
+            
+            let cart = getCart();
+            const existing = cart.find(i => i.id === productId);
+            const finalPrice = Number(product.discount) > 0 ? (Number(product.price) - Number(product.discount)) : Number(product.price);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    price: finalPrice,
+                    image: product.images?.[0] || '',
+                    qty: 1
+                });
+            }
+            saveCart(cart);
+            document.getElementById('cart-slider').classList.add('open');
+        }
+
+        // ====== RENDERING ======
+        async function loadProducts() {
+            try {
+                const snapshot = await getDocs(collection(db, 'products'));
+                const products = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                productsMap.clear();
+                products.forEach(p => productsMap.set(p.id, p));
+                return products;
+            } catch (err) {
+                console.error('Error loading products:', err);
+                return [];
+            }
+        }
+
+        function createProductCard(p, products) {
+            const hasDiscount = Number(p.discount) > 0;
+            const price = Number(p.price) || 0;
+            const finalPrice = hasDiscount ? (price - Number(p.discount)) : price;
+            const isUpcoming = p.availability === 'Upcoming';
+            
+            const card = document.createElement('div');
+            card.className = "group bg-surface-container-low p-4 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all duration-300";
+            card.innerHTML = `
+                <div class="relative aspect-square mb-6 overflow-hidden rounded-lg bg-surface-container-lowest flex items-center justify-center cursor-pointer">
+                    <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="${p.images?.[0] || ''}" alt="${p.name}">
+                    ${p.hotDeal ? '<div class="absolute top-3 left-3 bg-primary-container text-white text-[10px] font-bold px-2 py-1 rounded">HOT</div>' : ''}
+                </div>
+                <h3 class="text-lg font-headline font-bold mb-1 group-hover:text-primary transition-colors line-clamp-1">${p.name}</h3>
+                <div class="flex gap-2 mb-4">
+                    <span class="bg-surface-container-highest px-2 py-1 rounded text-[10px] font-bold tracking-widest text-on-surface-variant uppercase">${p.category || 'Gear'}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xl font-bold text-secondary font-headline">${isUpcoming ? 'TBA' : '৳' + finalPrice.toLocaleString()}</span>
+                    <button class="add-to-cart-btn p-2 rounded-full bg-surface-container-highest text-white hover:bg-primary transition-colors ${isUpcoming ? 'opacity-50 cursor-not-allowed' : ''}">
+                        <span class="material-symbols-outlined">add_shopping_cart</span>
+                    </button>
+                </div>
+            `;
+
+            if (!isUpcoming) {
+                card.querySelector('.add-to-cart-btn').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    addToCart(p.id);
+                });
+            }
+            
+            card.querySelector('.relative').addEventListener('click', () => {
+                const slug = p.name.toLowerCase().replace(/\s+/g, '-');
+                window.location.href = `product.html?slug=${slug}`;
+            });
+
+            return card;
+        }
+
+        // ====== INITIALIZATION ======
+        document.addEventListener('DOMContentLoaded', async () => {
+            updateCartUI();
+
+            // UI Listeners
+            document.getElementById('cart-link')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('cart-slider').classList.add('open');
+            });
+            document.getElementById('close-cart')?.addEventListener('click', () => {
+                document.getElementById('cart-slider').classList.remove('open');
+            });
+
+            // Load Products for Homepage
+            const interestContainer = document.getElementById('interest-products');
+            if (interestContainer) {
+                interestContainer.innerHTML = '<div class="col-span-full py-20 text-center"><div class="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>';
+                const products = await loadProducts();
+                interestContainer.innerHTML = '';
+                
+                // Show latest 4 products or random 4
+                const latest = products.slice(-4);
+                latest.forEach(p => interestContainer.appendChild(createProductCard(p, products)));
+            }
+        });
+    </script>
+</body></html>
