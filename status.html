@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Status - The Geek Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a href="index.html" class="logo">The Geek Shop</a>
+      <div class="nav-links">
+        <a href="products.html">Products</a>
+        <a href="status.html">Order Status</a>
+        <a id="cart-link" style="cursor:pointer;">Cart (<span id="cart-count">0</span>)</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" style="padding-top: 110px; max-width: 900px;">
+    <h1 class="font-headline" style="font-size: 3rem; margin-bottom: 2rem;">Order Status</h1>
+
+    <form id="status-form" style="background:var(--surface); padding:2rem; border-radius:16px; margin-bottom:3rem;">
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; margin-bottom:8px; font-weight:500;">Phone Number</label>
+        <input id="phone-input" type="tel" placeholder="01XXXXXXXXX" required 
+               style="width:100%; padding:14px; border-radius:12px; border:1px solid var(--outline-variant); background:var(--surface-container); color:white;">
+      </div>
+      <button type="submit" class="kinetic-gradient" style="width:100%; padding:14px;">Check My Orders</button>
+    </form>
+
+    <div id="order-result"></div>
+  </main>
+
+  <!-- Cart Slider -->
+  <div id="cart-slider" class="cart-slider">
+    <button id="close-cart" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:2rem;cursor:pointer;">×</button>
+    <h2>Your Cart</h2>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-total" style="padding:1.5rem 0;border-top:2px solid var(--primary);font-size:1.25rem;font-weight:600;"></div>
+    <button id="checkout-cart" class="kinetic-gradient" style="width:100%;padding:1rem;">Proceed to Checkout</button>
+  </div>
+
+  <footer style="background:#0a0a0a; padding:4rem 2rem; text-align:center; color:#777; margin-top:6rem;">
+    <p>© 2026 The Geek Shop BD • Built for Enthusiasts</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

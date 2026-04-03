@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Product - The Geek Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a href="index.html" class="logo">The Geek Shop</a>
+      <div class="nav-links">
+        <a href="products.html">Products</a>
+        <a href="status.html">Order Status</a>
+        <a id="cart-link" style="cursor:pointer;">Cart (<span id="cart-count">0</span>)</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" style="padding-top: 110px;">
+    <div class="product-detail">
+      <!-- Left: Images -->
+      <div class="product-images">
+        <img id="main-image" src="" alt="">
+        <div id="thumbnail-gallery" class="thumbnail-gallery"></div>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="product-info">
+        <h1 id="product-name" class="font-headline"></h1>
+        <div id="product-color" class="muted" style="font-size:1.1rem;margin:8px 0;"></div>
+        <div id="product-price" class="price" style="font-size:2rem;font-weight:700;color:var(--primary);margin:1rem 0;"></div>
+        
+        <div id="product-badges" class="badges" style="margin:1rem 0;"></div>
+        
+        <p id="product-spec" style="margin:1.5rem 0; line-height:1.7;"></p>
+
+        <div id="order-row" class="order-row" style="margin-top:2rem; gap:1rem;">
+          <!-- Buttons will be injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top:4rem;">
+      <h2 class="font-headline" style="font-size:2rem;margin-bottom:1.5rem;">Description</h2>
+      <div id="product-detailed-desc" style="line-height:1.8; color:var(--on-surface-variant);"></div>
+    </section>
+
+    <h2 class="font-headline" style="font-size:2rem;margin:4rem 0 2rem;">You May Also Like</h2>
+    <div id="other-products" class="product-list"></div>
+  </main>
+
+  <!-- Cart Slider -->
+  <div id="cart-slider" class="cart-slider">
+    <button id="close-cart" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:2rem;cursor:pointer;">×</button>
+    <h2>Your Cart</h2>
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-total" style="padding:1.5rem 0;border-top:2px solid var(--primary);font-size:1.25rem;font-weight:600;"></div>
+    <button id="checkout-cart" class="kinetic-gradient" style="width:100%;padding:1rem;">Proceed to Checkout</button>
+  </div>
+
+  <footer style="background:#0a0a0a; padding:4rem 2rem; text-align:center; color:#777; margin-top:6rem;">
+    <p>© 2026 The Geek Shop BD • Built for Enthusiasts</p>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
