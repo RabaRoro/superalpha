@@ -1,168 +1,367 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - The Geek Shop</title>
-  
-  <!-- Tailwind + Fonts -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/x-icon" href="logo t.png">
 
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
-    import { getAuth } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
-    import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js';
-  </script>
-  <script type="module" src="script.js"></script>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Geek Shop | Kinetic Laboratory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#323949",
+                        "surface-container": "#191f2f",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#404758",
+                        "surface-variant": "#2e3545",
+                        "tertiary": "#d8def3",
+                        "surface-container-low": "#141b2b",
+                        "inverse-on-surface": "#293040",
+                        "on-primary-fixed": "#29074a",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dce2f7",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#2e3545",
+                        "on-primary-fixed-variant": "#573878",
+                        "primary-fixed-dim": "#dbb8ff",
+                        "surface": "#0c1322",
+                        "primary-container": "#d8b4fe",
+                        "surface-tint": "#dbb8ff",
+                        "surface-container-high": "#232a3a",
+                        "outline": "#968e9a",
+                        "on-primary-container": "#604283",
+                        "background": "#0c1322",
+                        "outline-variant": "#4a454f",
+                        "on-tertiary": "#293040",
+                        "surface-container-lowest": "#070e1d",
+                        "on-surface": "#dce2f7",
+                        "primary": "#ecd7ff",
+                        "tertiary-container": "#bcc2d7",
+                        "on-tertiary-container": "#495061",
+                        "on-tertiary-fixed": "#141b2b",
+                        "on-error": "#690005",
+                        "secondary-container": "#444558",
+                        "on-secondary-fixed": "#181a2b",
+                        "on-background": "#dce2f7",
+                        "on-secondary-container": "#b3b3c9",
+                        "on-secondary-fixed-variant": "#444558",
+                        "on-surface-variant": "#cdc3d0",
+                        "secondary": "#c4c5db",
+                        "tertiary-fixed-dim": "#c0c6db",
+                        "primary-fixed": "#efdbff",
+                        "on-secondary": "#2d2f40",
+                        "inverse-primary": "#6f5092",
+                        "on-primary": "#3f2160",
+                        "surface-dim": "#0c1322",
+                        "secondary-fixed": "#e1e1f7",
+                        "tertiary-fixed": "#dce2f7",
+                        "secondary-fixed-dim": "#c4c5db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #191f2f 25%, #2e3545 50%, #191f2f 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #0c1322; color: #dce2f7; }
+        h1, h2, h3, .headline { font-family: 'Space Grotesk', sans-serif; }
+    </style>
 </head>
-
-<body class="bg-background text-on-background font-body antialiased min-h-screen">
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 bg-[#131313]/70 backdrop-blur-xl border-b border-white/10">
-    <div class="max-w-[1440px] mx-auto flex items-center justify-between px-8 py-5">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="logo.png" alt="The Geek Shop" class="h-9">
-        <div class="text-2xl font-bold tracking-tighter text-primary font-headline">The Geek Shop</div>
-      </a>
-
-      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="products.html" class="text-primary">Products</a>
-        <a href="status.html" class="hover:text-white transition-colors">Order Status</a>
-      </div>
-
-      <div class="flex items-center gap-6">
-        <button id="cart-link" class="flex items-center gap-2 hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-2xl">shopping_cart</span>
-          <span class="text-sm">Cart (<span id="cart-count">0</span>)</span>
-        </button>
-        <button class="hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-2xl">account_circle</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <main class="pt-24 pb-20 px-6 max-w-[1440px] mx-auto">
-    <!-- Header -->
-    <header class="mb-12">
-      <h1 id="products-title" class="font-headline text-5xl md:text-7xl font-bold tracking-tighter mb-4">
-        The Collector's <span class="text-gradient-primary">Gallery</span>
-      </h1>
-      <p class="text-on-surface-variant max-w-2xl">Explore premium mechanical keyboards, keycaps, switches, and accessories curated for Bangladeshi enthusiasts.</p>
-    </header>
-
-    <div class="flex flex-col lg:flex-row gap-10">
-      <!-- Filters Sidebar -->
-      <aside class="w-full lg:w-72 flex-shrink-0">
-        <div class="glass-panel sticky top-24 p-6 rounded-3xl border border-white/10">
-          <div class="flex items-center justify-between mb-8">
-            <h2 class="font-headline text-xl font-semibold">Filters</h2>
-            <button id="clear-filter" class="text-sm text-gray-400 hover:text-white">Clear All</button>
-          </div>
-
-          <!-- Price Range -->
-          <div class="mb-10">
-            <h3 class="font-headline text-sm uppercase tracking-widest text-primary mb-4">Price Range</h3>
-            <div class="px-2">
-              <input type="range" id="price-min-slider" min="0" max="50000" value="0" class="w-full accent-primary">
-              <input type="range" id="price-max-slider" min="0" max="50000" value="50000" class="w-full accent-primary -mt-2">
+<body class="bg-background selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="bg-[#0c1322]/60 backdrop-blur-xl docked full-width top-0 sticky bg-slate-900/50 z-50">
+<div class="flex justify-between items-center px-8 py-4 w-full max-w-screen-2xl mx-auto z-50">
+<div class="text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-purple-200 to-purple-400 font-['Space_Grotesk']">
+                The Geek Shop
             </div>
-            <div class="flex justify-between text-xs text-gray-400 mt-2">
-              <span id="price-min-display">৳0</span>
-              <span id="price-max-display">৳50,000+</span>
+<nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight">
+<a class="text-purple-300 border-b-2 border-purple-400 pb-1 hover:text-purple-200 transition-colors" href="#">Keyboards</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Switches</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Keycaps</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Desk Mats</a>
+</nav>
+<div class="flex items-center gap-4 text-purple-300 dark:text-purple-200">
+<button class="p-2 hover:text-purple-200 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="p-2 hover:text-purple-200 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-screen-2xl mx-auto px-8 py-12">
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0 space-y-10">
+<div>
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6">Laboratory Filters</h2>
+<!-- Search Input -->
+<div class="relative mb-10">
+<input class="w-full bg-surface-container-lowest border-b-2 border-surface-container-highest px-0 py-3 text-sm focus:border-primary focus:ring-0 transition-all placeholder:text-outline-variant" placeholder="Search components..." type="text"/>
+<span class="material-symbols-outlined absolute right-0 top-3 text-outline-variant">search</span>
+</div>
+<!-- Filter Sections -->
+<div class="space-y-8">
+<!-- Price Range -->
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline block mb-4">Price Orbit</span>
+<div class="h-1 bg-surface-container-high rounded-full relative">
+<div class="absolute left-1/4 right-1/4 h-full bg-primary-container rounded-full"></div>
+<div class="absolute left-1/4 -top-1.5 w-4 h-4 bg-primary rounded-full shadow-lg border-2 border-surface"></div>
+<div class="absolute right-1/4 -top-1.5 w-4 h-4 bg-primary rounded-full shadow-lg border-2 border-surface"></div>
+</div>
+<div class="flex justify-between mt-3 text-[10px] font-mono text-outline">
+<span>$49</span>
+<span>$899</span>
+</div>
+</div>
+<!-- Specs Checklist -->
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline block mb-4">Core Specs</span>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 bg-surface-container-high border border-outline-variant rounded-sm group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Mechanical Keys</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 bg-primary rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed text-[12px] font-bold">check</span>
+</div>
+<span class="text-sm text-on-surface transition-colors">PBT Dye-Sub</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 bg-surface-container-high border border-outline-variant rounded-sm group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Hotswap PCB</span>
+</label>
+</div>
+</div>
+<!-- Layout -->
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline block mb-4">Form Factor</span>
+<div class="grid grid-cols-2 gap-2">
+<button class="bg-surface-container-highest text-primary text-[10px] font-bold py-2 rounded-xl">60%</button>
+<button class="bg-surface-container-low text-on-surface-variant text-[10px] font-bold py-2 rounded-xl hover:bg-surface-container-high transition-colors">75%</button>
+<button class="bg-surface-container-low text-on-surface-variant text-[10px] font-bold py-2 rounded-xl hover:bg-surface-container-high transition-colors">TKL</button>
+<button class="bg-surface-container-low text-on-surface-variant text-[10px] font-bold py-2 rounded-xl hover:bg-surface-container-high transition-colors">FULL</button>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid Area -->
+<div class="flex-1">
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-label-md text-primary font-bold tracking-[0.2em] uppercase text-xs">Catalog.V2</span>
+<h1 class="text-5xl font-extrabold tracking-tighter mt-2 bg-clip-text text-transparent bg-gradient-to-r from-on-surface to-on-surface-variant">The Inventory</h1>
+</div>
+<div class="flex items-center gap-4 text-sm text-outline">
+<span>Showing 24 of 152 Units</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<select class="bg-transparent border-none focus:ring-0 text-on-surface font-bold p-0 cursor-pointer">
+<option>Latest Arrivals</option>
+<option>Price: High-Low</option>
+<option>Top Rated</option>
+</select>
+</div>
+</header>
+<!-- Products Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- High-Fidelity Card: Active Product -->
+<div class="group relative bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:translate-y-[-8px]">
+<div class="aspect-[4/5] bg-surface-container-lowest relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Close-up high contrast shot of a premium mechanical keyboard with lavender glowing backlit keys on a dark technical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgc66FDGJebUBHj4hGfbisJJvW9VDPbJXnXxFcA5C2NMwT5GrBKAVUACwR4bJX_7oiO2tdRpRZThN3GggvaHznaV1QmDuwN9KPGkE_2FAHt-PnCnXIjYnLGSQSJi4IX5X4A9TnE7yDbBrhxsP4uPiFpLsECNaGuw8hPNHqObikk_YYUESi_Mr6K2j1cRbC-HaR_J1LTL28_CLRgIH9368CodSKkPYWRvIZ1H6YkLIfgt9ZaGPczNHYN6TuX85LOwZJJ2zSiV-Kcbci"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-primary text-on-primary-fixed text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-xl">New Drop</span>
+</div>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-surface-bright/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 shadow-2xl">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold tracking-tight">KINETIC-75 PRO</h3>
+<span class="text-primary font-mono font-bold">$289.00</span>
+</div>
+<p class="text-sm text-outline mb-6 line-clamp-2">Gasket-mounted industrial chassis with polycarbonate plate and pre-lubed linear switches.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">Aluminum Case</span>
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">Hotswap</span>
+</div>
+</div>
+</div>
+<!-- Shimmer Loading State 1 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="aspect-[4/5] shimmer opacity-20"></div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between">
+<div class="h-6 w-32 shimmer rounded-lg opacity-20"></div>
+<div class="h-6 w-16 shimmer rounded-lg opacity-20"></div>
+</div>
+<div class="h-4 w-full shimmer rounded-lg opacity-10"></div>
+<div class="h-4 w-2/3 shimmer rounded-lg opacity-10"></div>
+<div class="flex gap-2">
+<div class="h-6 w-20 shimmer rounded-full opacity-10"></div>
+<div class="h-6 w-20 shimmer rounded-full opacity-10"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:translate-y-[-8px]">
+<div class="aspect-[4/5] bg-surface-container-lowest relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Aesthetic layout of violet and grey keycaps on a minimal slate gray desk mat with harsh editorial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMpOR9BlwnF2PQuQhWerRXJcitEyeaRYQ-sBZbUbfmOnkMdbe8Da7u49kcjGCYsMRJQugDRUm8KMDOFGDnkIf9t4cpFr-DCwGPorMJflY9cBKr28wOcHiKDmbl6LRVFvyJUmmPhhvg9hc68ZZ_FCk-Z7przCerhkEYroZUGzdmxtv-7QvHjXhJYlxePuM1pG353qU0YtLUgi3kFcQ0HUxdqKWcQztfWwI74WVe9cLJtpFWmTM9Evimdc4ku6BGNOfbqtvlfzjQCr3G"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-surface-bright/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 shadow-2xl">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold tracking-tight">VOID CAPS V2</h3>
+<span class="text-primary font-mono font-bold">$125.00</span>
+</div>
+<p class="text-sm text-outline mb-6">Double-shot PBT keycap set with custom artisan escape key. 165 keys included.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">PBT</span>
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">Cherry Profile</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:translate-y-[-8px]">
+<div class="aspect-[4/5] bg-surface-container-lowest relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Close up of high precision mechanical switches in a container with sharp digital lighting and purple highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClEE0vIrw_bPeF19BRS5rJOnKog9wn5oFdpaZ2fpFy3c3fj5nT2Rpe40qWeeHBwa7NBLTNjArCMbHdwSYULuaodi08uXl8BkTRMF86lB3fiVFBNGGtvkUFjWVpufhQUtioz3yrrz4xTwFOl-JYxPK8viJf14mlGrPhM6uzJHmMv0Pejx9mYo_LVBKTsyUdsScZKG0ROC_yC9ZHCkn8W_LhQ139iO2YYL6DlNLKFf1_zmHB215PKWsdVc1WYNccbIk0J5ou5_Ps4wRW"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-surface-bright/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 shadow-2xl">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold tracking-tight">GHOST LINEAR X</h3>
+<span class="text-primary font-mono font-bold">$45.00</span>
+</div>
+<p class="text-sm text-outline mb-6">Silent linear switches with factory lubed stems. Pack of 70 switches.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">Linear</span>
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">5-Pin</span>
+</div>
+</div>
+</div>
+<!-- Shimmer Loading State 2 -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="aspect-[4/5] shimmer opacity-20"></div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between">
+<div class="h-6 w-32 shimmer rounded-lg opacity-20"></div>
+<div class="h-6 w-16 shimmer rounded-lg opacity-20"></div>
+</div>
+<div class="h-4 w-full shimmer rounded-lg opacity-10"></div>
+<div class="h-4 w-2/3 shimmer rounded-lg opacity-10"></div>
+<div class="flex gap-2">
+<div class="h-6 w-20 shimmer rounded-full opacity-10"></div>
+<div class="h-6 w-20 shimmer rounded-full opacity-10"></div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative bg-surface-container-low rounded-xl overflow-hidden transition-all duration-500 hover:translate-y-[-8px]">
+<div class="aspect-[4/5] bg-surface-container-lowest relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Wide shot of a minimalist dark gray desk mat with a subtle topographic map pattern and professional studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSFdtS6OVbt0t1QV7BSs5x533Q-zpATEc6BV_rEHQOkNgxbeYl3NSD9S2SIOLXng4AXxVQF5sohb5siijEDBRfBWBViysAOZtm39HYc_iuAEBOGzq3xk5hcILF0LmiVNeEu2yWEzUBw6oPWJ5ED3KVpZs6P7b5fV3S2mSZOL7Jj397p_sFzB7xVVjp3STX_ehIovyp6oIyi8kyBCM6vZhf0bp-3WZlNwnyCYkpq1ci2x4-MS7_i5ZNBMLgV5oiIpDVVHrevwFNnU3M"/>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-surface-bright/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0 shadow-2xl">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-xl font-bold tracking-tight">KINETIC MAT / TOPOG</h3>
+<span class="text-primary font-mono font-bold">$35.00</span>
+</div>
+<p class="text-sm text-outline mb-6">Ultra-smooth microfiber desk mat with stitched edges and non-slip rubber base.</p>
+<div class="flex gap-2">
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">900x400</span>
+<span class="bg-surface-container-highest text-[10px] text-on-surface-variant font-bold px-3 py-1 rounded-full">Waterproof</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-20 flex justify-center items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary-fixed font-black rounded-lg">1</button>
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">3</button>
+<div class="text-outline mx-2">...</div>
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">12</button>
+<button class="w-10 h-10 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-slate-950 bg-slate-900 mt-24">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12">
+<div class="font-['Space_Grotesk'] text-lg font-bold text-slate-200">
+                THE GEEK SHOP
             </div>
-          </div>
-
-          <!-- Color -->
-          <div class="mb-10">
-            <h3 class="font-headline text-sm uppercase tracking-widest text-primary mb-4">Color</h3>
-            <div id="color-options" class="space-y-3"></div>
-          </div>
-
-          <!-- Specs -->
-          <div id="specs-filter" class="mb-10">
-            <h3 class="font-headline text-sm uppercase tracking-widest text-primary mb-4">Specs</h3>
-            <div id="keys-options" class="mb-6"></div>
-            <div id="print-options" class="mb-6"></div>
-            <div id="layout-options" class="mb-6"></div>
-            <div id="profile-options"></div>
-          </div>
-
-          <button id="apply-filter" 
-                  class="w-full py-4 bg-primary text-black font-bold rounded-2xl hover:bg-primary/90 transition-all">
-            Apply Filters
-          </button>
-        </div>
-      </aside>
-
-      <!-- Product Grid -->
-      <div class="flex-1">
-        <div class="flex justify-between items-center mb-8">
-          <p class="text-on-surface-variant" id="results-count">Showing all products</p>
-          <button id="filter-btn-mobile" class="lg:hidden px-5 py-2 bg-surface-container rounded-2xl text-sm">
-            Filters
-          </button>
-        </div>
-
-        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Populated by JavaScript -->
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Image Viewer -->
-  <div id="image-viewer" class="hidden fixed inset-0 bg-black/90 z-[100] items-center justify-center">
-    <button id="close-viewer" class="absolute top-8 right-8 text-5xl text-white hover:text-gray-300">×</button>
-    <img id="viewer-img" class="max-w-[90%] max-h-[85%] object-contain rounded-3xl" src="" alt="">
-  </div>
-
-  <!-- Cart Slider -->
-  <div id="cart-slider" class="fixed top-0 right-[-420px] w-[420px] h-full bg-surface-container shadow-2xl transition-all duration-300 z-50 flex flex-col border-l border-white/10">
-    <div class="p-6 border-b border-white/10 flex justify-between items-center">
-      <h2 class="font-headline text-2xl">Your Cart</h2>
-      <button id="close-cart" class="text-4xl text-gray-400 hover:text-white">×</button>
-    </div>
-    <div id="cart-items" class="flex-1 overflow-auto p-6"></div>
-    <div class="p-6 border-t border-white/10">
-      <div id="cart-total" class="text-3xl font-bold mb-6">Total: ৳0</div>
-      <button id="checkout-cart" class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-black font-bold rounded-2xl text-lg">
-        Proceed to Checkout
-      </button>
-    </div>
-  </div>
-
-  <!-- Cart Checkout Modal (your original) -->
-  <div id="cart-checkout-modal" class="modal hidden">
-    <div class="card modal-content max-w-lg mx-auto mt-20">
-      <!-- Your original checkout form remains here -->
-      <div class="modal-header">
-        <h2>Checkout (Cart)</h2>
-        <button id="cart-close-modal-btn">Close</button>
-      </div>
-      <form id="cart-checkout-form" class="form">
-        <!-- ... your existing checkout form content ... -->
-        <div id="cart-co-items"></div>
-        <div class="row">
-          <div><label>Delivery Fee</label><input id="cart-co-delivery" readonly></div>
-          <div><label>Total Amount</label><input id="cart-co-total" readonly></div>
-        </div>
-        <!-- Rest of your form remains unchanged -->
-        <button id="cart-place-order-btn" type="submit">Place Order</button>
-      </form>
-    </div>
-  </div>
-
-  <footer class="bg-[#0e0e0e] py-12 px-8 mt-20">
-    <div class="max-w-[1440px] mx-auto text-center text-gray-500 text-sm">
-      © 2026 The Geek Shop BD • Built for Keyboard Enthusiasts
-    </div>
-  </footer>
-
-</body>
-</html>
+<div class="flex gap-8 font-['Inter'] text-xs tracking-widest text-slate-500">
+<a class="hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100" href="#">Discord</a>
+<a class="hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100" href="#">Github</a>
+</div>
+<div class="font-['Inter'] text-xs tracking-widest text-slate-500 uppercase">
+                © 2024 THE GEEK SHOP. KINETIC LABORATORY DIV.
+            </div>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 md:hidden bg-[#0c1322]/80 backdrop-blur-lg border-t border-white/5 z-50">
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-purple-500/20 text-purple-200 rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Admin</span>
+</a>
+</nav>
+</body></html>

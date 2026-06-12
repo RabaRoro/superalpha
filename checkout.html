@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#323949",
+                        "surface-container": "#191f2f",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#404758",
+                        "surface-variant": "#2e3545",
+                        "tertiary": "#d8def3",
+                        "surface-container-low": "#141b2b",
+                        "inverse-on-surface": "#293040",
+                        "on-primary-fixed": "#29074a",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dce2f7",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#2e3545",
+                        "on-primary-fixed-variant": "#573878",
+                        "primary-fixed-dim": "#dbb8ff",
+                        "surface": "#0c1322",
+                        "primary-container": "#d8b4fe",
+                        "surface-tint": "#dbb8ff",
+                        "surface-container-high": "#232a3a",
+                        "outline": "#968e9a",
+                        "on-primary-container": "#604283",
+                        "background": "#0c1322",
+                        "outline-variant": "#4a454f",
+                        "on-tertiary": "#293040",
+                        "surface-container-lowest": "#070e1d",
+                        "on-surface": "#dce2f7",
+                        "primary": "#ecd7ff",
+                        "tertiary-container": "#bcc2d7",
+                        "on-tertiary-container": "#495061",
+                        "on-tertiary-fixed": "#141b2b",
+                        "on-error": "#690005",
+                        "secondary-container": "#444558",
+                        "on-secondary-fixed": "#181a2b",
+                        "on-background": "#dce2f7",
+                        "on-secondary-container": "#b3b3c9",
+                        "on-secondary-fixed-variant": "#444558",
+                        "on-surface-variant": "#cdc3d0",
+                        "secondary": "#c4c5db",
+                        "tertiary-fixed-dim": "#c0c6db",
+                        "primary-fixed": "#efdbff",
+                        "on-secondary": "#2d2f40",
+                        "inverse-primary": "#6f5092",
+                        "on-primary": "#3f2160",
+                        "surface-dim": "#0c1322",
+                        "secondary-fixed": "#e1e1f7",
+                        "tertiary-fixed": "#dce2f7",
+                        "secondary-fixed-dim": "#c4c5db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(12, 19, 34, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #ecd7ff 0%, #d8b4fe 100%);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0c1322; }
+        ::-webkit-scrollbar-thumb { background: #2e3545; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="bg-[#0c1322]/60 backdrop-blur-xl docked full-width top-0 sticky bg-slate-900/50 z-50">
+<nav class="flex justify-between items-center px-8 py-4 w-full max-w-screen-2xl mx-auto z-50">
+<div class="font-['Space_Grotesk'] text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-purple-200 to-purple-400">
+                The Geek Shop
+            </div>
+<div class="hidden md:flex gap-8 items-center font-['Space_Grotesk'] tracking-tight">
+<a class="text-purple-300 border-b-2 border-purple-400 pb-1 hover:text-purple-200 transition-colors" href="#">Keyboards</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Switches</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Keycaps</a>
+<a class="text-slate-400 hover:text-purple-200 transition-colors" href="#">Desk Mats</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-purple-300 hover:text-purple-200 transition-colors Active: scale-95 duration-150">shopping_cart</button>
+<button class="material-symbols-outlined text-purple-300 hover:text-purple-200 transition-colors Active: scale-95 duration-150">account_circle</button>
+</div>
+</nav>
+</header>
+<main class="max-w-screen-2xl mx-auto px-8 py-12 lg:py-20 overflow-hidden">
+<!-- Product Details Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Gallery: Asymmetric Layout -->
+<div class="lg:col-span-7 grid grid-cols-2 gap-4">
+<div class="col-span-2 relative aspect-[16/9] overflow-hidden bg-surface-container-low rounded-xl group">
+<div class="absolute top-6 left-6 z-10 flex gap-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold font-headline tracking-widest uppercase">Pre-order</span>
+<span class="bg-surface-bright/80 backdrop-blur text-on-surface px-3 py-1 rounded-full text-xs font-medium font-headline tracking-widest uppercase">New</span>
+</div>
+<img alt="Mechanical keyboard" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" data-alt="Close-up of a premium mechanical keyboard with translucent keycaps and deep purple violet ambient lighting in a high-tech studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQLa6XU84TmMs5IPHy_7_034N9x-vPL61e5YFT36xmTU5tGeI3nqHD_DzHPbaL0I7mdWkLv8fAJKDl2FSPzIykcXdGCjEvrMfkt2HUlCwk_hMmnQmxeMrHNZJld6tmyP65qCAi23prgDLj5eCpcQ8mJ6ayIjvN5xG7cNkJ4Pu6C4atbFx6D4zvA8XPhs_D5_d6It1TZ6TwHjKFNVwLv2ReB9l2QIg2Fp6oYtztwM8P72xFcZLPj_JgAasXuDVGdPCND4YAJ4sUIm7I"/>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-xl overflow-hidden">
+<img alt="Switch detail" class="w-full h-full object-cover" data-alt="Macro photography of purple mechanical keyboard switches with detailed copper pins and high-precision plastic molding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjbn6iyW3Zekit-CwlUr-0CcwOP2OJddx7sMH4tTwvAFO5xQW5VT_RA3k3r0VtrhRl5N7ZouzfTxntfQIHWzu4F2L8yfDiO3KC9H4s5MShXOQgb6Oy6fj9LXYq7UnaHfUnsFK62dmO9NrO6S5TTa-JHt2kCmPPiOZXy1RBHAeBlhL9hpx9Zc3j-hAAHa3seOEswd_Bz8b8KVvfaAnAxMxXFOdXszX89Z0-g0ZKP9ab8m4mMFM7ltcVtiWCaPY3ORg-lIgHPPU_5wuR"/>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-xl overflow-hidden mt-8">
+<img alt="Desk setup" class="w-full h-full object-cover" data-alt="Minimalist desk setup featuring the keyboard, a smooth grey desk mat, and subtle purple light strips in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7OI3jotISfdJmbq_rKipxkPMxNljGCwW9TVrSPPg0BiM5EkWpOGvCa7bWT2MefLg7Yo8q09uyoTulwzql4ab1MSeMZdGhXTPyNAmUU2D6YNx91pLcaXYFtsJhgaSeoO1czNWxJoBt_SuYejH4vFSAl_IDD0FurKgyCfpOOlP4SPcB49wHlRdlhCTEO0DQDuMkPmKoEp23uJxsSvkIlTbNTesFM3Y3VtwJ9u2wLOrfnnMdpb64FoHwm38W1OQJW2O7YNY4VhHMqver"/>
+</div>
+</div>
+<!-- Product Info -->
+<div class="lg:col-span-5 sticky top-32">
+<div class="space-y-2 mb-8">
+<p class="font-headline text-primary tracking-widest text-xs uppercase opacity-80">Signature Series</p>
+<h1 class="font-headline text-5xl font-bold tracking-tighter text-on-surface leading-tight">NEBULIGHT MK-7</h1>
+<p class="text-3xl font-light text-primary-fixed-dim">$249.00</p>
+</div>
+<div class="space-y-6 mb-12">
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                        The ultimate precision instrument for digital architects. Featuring CNC-machined aerospace grade aluminum and the proprietary G-Laboratory Violet switches for a tactile response that mimics surgical instruments.
+                    </p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<span class="block text-[10px] text-outline uppercase tracking-widest mb-1">Layout</span>
+<span class="font-headline text-on-surface">75% Exploded</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<span class="block text-[10px] text-outline uppercase tracking-widest mb-1">Weight</span>
+<span class="font-headline text-on-surface">1.8kg Brass</span>
+</div>
+</div>
+</div>
+<!-- CTA Actions -->
+<div class="flex flex-col gap-4">
+<button class="signature-gradient text-on-primary-fixed font-headline font-bold py-5 rounded-xl text-lg tracking-tight hover:brightness-110 transition-all Active:scale-95 duration-150 shadow-xl shadow-purple-500/10">
+                        PRE-ORDER NOW
+                    </button>
+<button class="bg-surface-variant/40 backdrop-blur text-on-surface font-headline font-semibold py-5 rounded-xl text-lg hover:bg-surface-variant/60 transition-all">
+                        ADD TO CART
+                    </button>
+</div>
+<!-- Technical Specs List -->
+<div class="mt-16 pt-16 border-t border-outline-variant/10">
+<h3 class="font-headline text-sm font-bold tracking-widest uppercase mb-6">Technical Specifications</h3>
+<ul class="space-y-4">
+<li class="flex justify-between items-center text-sm">
+<span class="text-outline">Connectivity</span>
+<span class="text-on-surface-variant">USB-C, Bluetooth 5.2</span>
+</li>
+<li class="flex justify-between items-center text-sm">
+<span class="text-outline">Latency</span>
+<span class="text-on-surface-variant">0.5ms Polling</span>
+</li>
+<li class="flex justify-between items-center text-sm">
+<span class="text-outline">Switch Type</span>
+<span class="text-on-surface-variant">Hot-Swappable 5-Pin</span>
+</li>
+<li class="flex justify-between items-center text-sm">
+<span class="text-outline">Warranty</span>
+<span class="text-on-surface-variant">2 Year Laboratory LTD</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Mobile) -->
+<footer class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 md:hidden bg-[#0c1322]/80 backdrop-blur-lg border-t border-white/5 z-50">
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-purple-500/20 text-purple-200 rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Admin</span>
+</a>
+</footer>
+<!-- Overlay: Cart Slider (Active State Simulation) -->
+<div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[60] flex justify-end">
+<div class="w-full max-w-md bg-surface-container-low h-full shadow-2xl flex flex-col">
+<div class="p-8 flex justify-between items-center">
+<h2 class="font-headline text-2xl font-bold tracking-tight">Your Rig</h2>
+<button class="material-symbols-outlined text-outline hover:text-on-surface transition-colors">close</button>
+</div>
+<div class="flex-grow overflow-y-auto px-8 space-y-6">
+<!-- Cart Item -->
+<div class="flex gap-4 items-center bg-surface-container-lowest p-4 rounded-xl">
+<div class="w-20 h-20 bg-surface-variant rounded overflow-hidden flex-shrink-0">
+<img alt="Cart item" class="w-full h-full object-cover" data-alt="Thumbnail of a mechanical keyboard with glowing purple LEDs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEMVqeAOnQvQC1mMLo2Kkyuif6zG6FXeIy03fXP2KA-DZVcXY5WAjiZtBB1-nKnmI5wb30f0POHRCXJwjgtjzAy7HYwi6ZOATf0LhxEciK-GXM7Jr-PslDBA4U5m9eUY-RI_bxTxGuC0Ws8mPlNQCD2svZB2y1qTIl7UTn7SUmMhdfBm5sQ6Mv_0gOTf-A-T3-jmUFJ_sZXYlZ9IXtq5IoIyDT7jGRInmCPZaH5WgwliescSWn7ZdgBROISCtb6iIA-pZeLQW37Rt2"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline text-sm font-bold">Nebulight MK-7</h4>
+<p class="text-xs text-outline mb-2">Violet Tactile Switches</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-sm">$249.00</span>
+<div class="flex items-center gap-3 bg-surface-container rounded-lg px-2 py-1">
+<button class="material-symbols-outlined text-xs">remove</button>
+<span class="text-xs">1</span>
+<button class="material-symbols-outlined text-xs">add</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-8 bg-surface-container-lowest space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="text-outline">Subtotal</span>
+<span class="text-on-surface">$249.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-outline">Delivery (Estimated)</span>
+<span class="text-on-surface">$12.00</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="font-headline font-bold">Total</span>
+<span class="font-headline font-bold text-xl text-primary">$261.00</span>
+</div>
+<button class="w-full signature-gradient text-on-primary-fixed font-headline font-bold py-4 rounded-xl tracking-tight mt-4">
+                    INITIATE CHECKOUT
+                </button>
+</div>
+</div>
+</div>
+<!-- Checkout Modal (Static Representative State) -->
+<div class="fixed inset-0 z-[70] hidden md:flex items-center justify-center p-6 bg-slate-950/90 backdrop-blur-md">
+<div class="bg-surface-container-high w-full max-w-4xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+<!-- Left: Delivery Info -->
+<div class="p-10 space-y-8">
+<h2 class="font-headline text-3xl font-bold tracking-tighter">Dispatch Protocol</h2>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="block text-[10px] text-outline uppercase tracking-widest">Full Name</label>
+<input class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/20 focus:border-primary px-4 py-3 text-on-surface outline-none transition-all" type="text" value="Alex Rivera"/>
+</div>
+<div class="space-y-2">
+<label class="block text-[10px] text-outline uppercase tracking-widest">Shipping Destination</label>
+<textarea class="w-full bg-surface-container-lowest border-b-2 border-outline-variant/20 focus:border-primary px-4 py-3 text-on-surface outline-none transition-all resize-none" rows="2">123 Lab Street, Dhaka, Bangladesh</textarea>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-[10px] text-outline uppercase tracking-widest">Payment Method</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-primary/10 border-2 border-primary rounded-xl cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-2">account_balance_wallet</span>
+<p class="text-sm font-bold">Bkash</p>
+<p class="text-[10px] text-primary/70">Instant Transfer</p>
+</div>
+<div class="p-4 bg-surface-container-lowest border-2 border-transparent hover:border-outline-variant/30 rounded-xl cursor-pointer transition-all">
+<span class="material-symbols-outlined text-outline mb-2">local_shipping</span>
+<p class="text-sm font-bold">COD</p>
+<p class="text-[10px] text-outline">On Delivery</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Order Summary -->
+<div class="bg-surface-container p-10 flex flex-col justify-between">
+<div class="space-y-6">
+<h3 class="font-headline text-xl font-bold">Order Summary</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-variant overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover" data-alt="Small preview of the mechanical keyboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD9QXZBhE4jlqJuUht5IC6sha-0TT95kmzMdJozzASQ1Hne0m8cJQOQ7j2wrt40JzpIIbQE94WVHwoayTEXFp_veZmKwCZbrfuTbvmHpoZrrm7DREBp4HKAvqTlI1XvxMHFPOqW1N2lCWvdq-XegMTN1yojFBHFqzGYwMQ8a6pzW5MInucLa6LdL8ckxFUMe-zz39-oRJwv6xX2tAt-sJU2lRYyLPgRV2lVoZPmmoRdWvvqCma3WZHR0lr9tyuFwqz8NQnGRfntFim"/>
+</div>
+<span class="text-sm">Nebulight MK-7 x1</span>
+</div>
+<span class="text-sm font-medium">$249.00</span>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/20 space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-outline">Service Fee</span>
+<span class="text-on-surface">$5.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-outline">Delivery Charge</span>
+<span class="text-on-surface">$7.00</span>
+</div>
+<div class="flex justify-between items-center pt-4">
+<span class="font-headline text-lg font-bold">Grand Total</span>
+<span class="font-headline text-2xl font-bold text-primary">$261.00</span>
+</div>
+<button class="w-full signature-gradient text-on-primary-fixed font-headline font-bold py-5 rounded-xl tracking-widest mt-6 uppercase shadow-lg shadow-purple-500/20">
+                        Finalize Order
+                    </button>
+<button class="w-full text-outline text-[10px] uppercase tracking-widest pt-4 hover:text-on-surface transition-colors">
+                        Return to Shop
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Cluster -->
+<footer class="w-full py-12 px-8 bg-slate-950 mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12 max-w-screen-2xl mx-auto">
+<div class="font-['Space_Grotesk'] text-lg font-bold text-slate-200">THE GEEK SHOP</div>
+<div class="flex gap-8 font-['Inter'] text-xs tracking-widest">
+<a class="text-slate-600 hover:text-purple-300 transition-colors" href="#">Terms</a>
+<a class="text-slate-600 hover:text-purple-300 transition-colors" href="#">Privacy</a>
+<a class="text-slate-600 hover:text-purple-300 transition-colors" href="#">Discord</a>
+<a class="text-slate-600 hover:text-purple-300 transition-colors" href="#">Github</a>
+</div>
+<p class="font-['Inter'] text-xs tracking-widest text-slate-500 uppercase">© 2024 THE GEEK SHOP. KINETIC LABORATORY DIV.</p>
+</div>
+</footer>
+</body></html>

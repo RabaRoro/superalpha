@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Geek Shop | Admin Terminal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#323949",
+                        "surface-container": "#191f2f",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#404758",
+                        "surface-variant": "#2e3545",
+                        "tertiary": "#d8def3",
+                        "surface-container-low": "#141b2b",
+                        "inverse-on-surface": "#293040",
+                        "on-primary-fixed": "#29074a",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dce2f7",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#2e3545",
+                        "on-primary-fixed-variant": "#573878",
+                        "primary-fixed-dim": "#dbb8ff",
+                        "surface": "#0c1322",
+                        "primary-container": "#d8b4fe",
+                        "surface-tint": "#dbb8ff",
+                        "surface-container-high": "#232a3a",
+                        "outline": "#968e9a",
+                        "on-primary-container": "#604283",
+                        "background": "#0c1322",
+                        "outline-variant": "#4a454f",
+                        "on-tertiary": "#293040",
+                        "surface-container-lowest": "#070e1d",
+                        "on-surface": "#dce2f7",
+                        "primary": "#ecd7ff",
+                        "tertiary-container": "#bcc2d7",
+                        "on-tertiary-container": "#495061",
+                        "on-tertiary-fixed": "#141b2b",
+                        "on-error": "#690005",
+                        "secondary-container": "#444558",
+                        "on-secondary-fixed": "#181a2b",
+                        "on-background": "#dce2f7",
+                        "on-secondary-container": "#b3b3c9",
+                        "on-secondary-fixed-variant": "#444558",
+                        "on-surface-variant": "#cdc3d0",
+                        "secondary": "#c4c5db",
+                        "tertiary-fixed-dim": "#c0c6db",
+                        "primary-fixed": "#efdbff",
+                        "on-secondary": "#2d2f40",
+                        "inverse-primary": "#6f5092",
+                        "on-primary": "#3f2160",
+                        "surface-dim": "#0c1322",
+                        "secondary-fixed": "#e1e1f7",
+                        "tertiary-fixed": "#dce2f7",
+                        "secondary-fixed-dim": "#c4c5db"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .cyber-lattice {
+            background-image: radial-gradient(circle at 1px 1px, rgba(236, 215, 255, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-slate-950 py-8 z-50">
+<div class="px-8 mb-12">
+<h1 class="font-headline font-black text-purple-400 text-2xl tracking-tighter">Geek Admin</h1>
+<p class="font-body text-[10px] uppercase tracking-[0.2em] text-slate-500 mt-1">Terminal Access</p>
+</div>
+<nav class="flex-1">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-6 hover:bg-slate-900 hover:text-slate-200 transition-all duration-200 ease-in-out font-body text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-purple-500/10 text-purple-300 rounded-r-full py-3 px-6 border-l-4 border-purple-400 font-body text-sm uppercase tracking-widest transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="keyboard">keyboard</span>
+<span>Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-6 hover:bg-slate-900 hover:text-slate-200 transition-all duration-200 ease-in-out font-body text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-6 hover:bg-slate-900 hover:text-slate-200 transition-all duration-200 ease-in-out font-body text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-slate-500 py-3 px-6 hover:bg-slate-900 hover:text-slate-200 transition-all duration-200 ease-in-out font-body text-sm uppercase tracking-widest" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="px-6 mt-auto">
+<div class="bg-surface-container-low rounded-xl p-4 border border-white/5">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-container"></div>
+<div>
+<p class="text-xs font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-slate-500">Root Access</p>
+</div>
+</div>
+<button class="w-full py-2 bg-white/5 hover:bg-white/10 rounded-lg text-[10px] font-bold tracking-widest transition-colors">LOGOUT</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen cyber-lattice flex flex-col">
+<!-- Top App Bar (Admin Context) -->
+<header class="sticky top-0 z-40 bg-[#0c1322]/60 backdrop-blur-xl w-full">
+<div class="flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-4">
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-surface">Inventory Management</h2>
+<span class="px-3 py-1 bg-primary-container/20 text-primary-container text-[10px] font-black rounded-full uppercase tracking-widest">Live Sync</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">search</span>
+<input class="bg-surface-container-lowest border-none text-sm rounded-lg pl-10 pr-4 py-2 w-64 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Search Database..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors">terminal</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content: Inventory Bento Grid -->
+<section class="p-8 space-y-8 flex-1">
+<!-- Quick Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-7xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-500">Total Products</p>
+<p class="text-3xl font-headline font-bold text-on-surface mt-2">1,284</p>
+<div class="flex items-center gap-2 mt-4 text-[10px] text-green-400">
+<span class="material-symbols-outlined !text-xs">trending_up</span>
+<span>+12.5% this month</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-7xl" data-icon="warning">warning</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-500">Low Stock</p>
+<p class="text-3xl font-headline font-bold text-on-surface mt-2">18</p>
+<div class="flex items-center gap-2 mt-4 text-[10px] text-orange-400">
+<span class="material-symbols-outlined !text-xs">report_problem</span>
+<span>Requires Attention</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-7xl" data-icon="payments">payments</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-500">Revenue (24h)</p>
+<p class="text-3xl font-headline font-bold text-on-surface mt-2">$4,821.50</p>
+<div class="flex items-center gap-2 mt-4 text-[10px] text-green-400">
+<span class="material-symbols-outlined !text-xs">check_circle</span>
+<span>All systems operational</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-7xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-500">Pending Orders</p>
+<p class="text-3xl font-headline font-bold text-on-surface mt-2">42</p>
+<div class="flex items-center gap-2 mt-4 text-[10px] text-purple-400">
+<span class="material-symbols-outlined !text-xs">schedule</span>
+<span>Average dispatch 4h</span>
+</div>
+</div>
+</div>
+<!-- Product Management Table Section -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden border border-white/5">
+<div class="px-8 py-6 flex justify-between items-center border-b border-white/5">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Product Database</h3>
+<p class="text-xs text-slate-500 mt-1">Full-stack inventory management with real-time editing</p>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-surface-container-highest hover:bg-surface-bright rounded-lg text-[10px] font-bold tracking-widest transition-all uppercase flex items-center gap-2">
+<span class="material-symbols-outlined !text-sm">filter_list</span> Filter
+                        </button>
+<button class="px-6 py-2 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed rounded-xl text-[10px] font-black tracking-widest transition-all uppercase shadow-lg shadow-primary/20 hover:scale-105 active:scale-95">
+                            Add New Product
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-lowest text-[10px] font-black uppercase tracking-widest text-slate-500">
+<th class="px-8 py-4">Product Info</th>
+<th class="px-8 py-4">Category</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4 text-right">Price</th>
+<th class="px-8 py-4 text-right">Stock</th>
+<th class="px-8 py-4 text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-white/5 overflow-hidden">
+<img alt="Custom Keyboard" class="w-full h-full object-cover" data-alt="Close-up of a high-end mechanical keyboard with frosted purple keycaps and vibrant RGB lighting in a dark room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmOwvrkeDQg3cyTdMo9GDih88zjak_kw492YHgmGV_lonqeGTfbDgYeNfNRn7Z9ZD1IhAckOt0zj50Mn9FtTBd2M8sCUXwXXeYr2YIGezVLGyRWH2C1LFj1mApzpHszKw7QcizzA49C_hJT7rR-nJrZtpHbkNfVzq-J4urNIl0-I9m0EAwNUvQJwrOYgyBRIlru1xCvd-FMb_SagyVHfCUO2fEn_mfl8mzOgtJ3BlWDCFrImbtAD4mRdcITws8xY1rMTxHVS4IO0mx"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Neon Horizon TKL</p>
+<p class="text-[10px] text-slate-500">SKU: HK-992-NH</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-xs text-slate-400">Keyboards</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-green-500/10 text-green-400 text-[9px] font-bold rounded-full uppercase tracking-tighter border border-green-500/20">Active</span>
+</td>
+<td class="px-8 py-6 text-right font-headline font-medium">$289.00</td>
+<td class="px-8 py-6 text-right font-mono text-xs">142</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-3">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary text-lg transition-colors">edit</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-error text-lg transition-colors">delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-white/5 overflow-hidden">
+<img alt="Desk Mat" class="w-full h-full object-cover" data-alt="Top-down view of a designer desk mat featuring futuristic topography lines in silver on a deep navy background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9NYeRLuDdE6H6DRIe8Fkr8D03yuMG90FEdFlq7q3mNZ6-Exqp2sCHA6f39jDozYeJm-KRuuwhFNthyEgbGfoDvoB4aDwBOLlnVD16VdwcHH_c5Ki5QUss402yaV0DWIB9kApvTQkv8E1V2jLq5J3wigf4ZysOKQwlZnKMsDPHNdYwhOb91b2cx8DfgILf4GG4tRHy_Mn8ApLko8sO54THqHjxsfuoIN5HUwPsaAQbFuX4iy6knUysNeBYCJsIiskxW6Raf2x7m304"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Grid Topo Desk Mat</p>
+<p class="text-[10px] text-slate-500">SKU: DM-112-GT</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-xs text-slate-400">Desk Mats</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-orange-500/10 text-orange-400 text-[9px] font-bold rounded-full uppercase tracking-tighter border border-orange-500/20">Low Stock</span>
+</td>
+<td class="px-8 py-6 text-right font-headline font-medium">$45.00</td>
+<td class="px-8 py-6 text-right font-mono text-xs">8</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-3">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary text-lg transition-colors">edit</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-error text-lg transition-colors">delete</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center border border-white/5 overflow-hidden">
+<img alt="Mechanical Switch" class="w-full h-full object-cover" data-alt="Macro photography of a translucent linear mechanical switch with a gold-plated spring and a light purple stem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi5suKZ1X-VmsfwpX-rd8nF-by5S9CXt4Rpccpgq5CgX5bbzNHYLQAU5t5kl71cw6Yds9ekQmxz9Y80GrQ8055-t0gMOIK3z588YvFJqcas8xl7_ycA7H5XjqBBM2PEoGor-wYm5AXSekDNnRjCbiy9v0qgFsNR51xqTQafnYH_M07Wy4PdbCnTunKl8GhM5T4hohaO2DcIAp1gh4QC7ADFjYiK8Rynf2Bc88QfHm07ChujaHuaEMqruIdo1zLMmp0wduMoh82Ysdl"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Lavender Linear (90pk)</p>
+<p class="text-[10px] text-slate-500">SKU: SW-005-LL</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-xs text-slate-400">Switches</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-slate-500/10 text-slate-400 text-[9px] font-bold rounded-full uppercase tracking-tighter border border-white/10">Draft</span>
+</td>
+<td class="px-8 py-6 text-right font-headline font-medium">$62.50</td>
+<td class="px-8 py-6 text-right font-mono text-xs">0</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-3">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary text-lg transition-colors">edit</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-error text-lg transition-colors">delete</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-lowest border-t border-white/5 flex items-center justify-between">
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Displaying 1-10 of 1,284 entries</p>
+<div class="flex items-center gap-2">
+<button class="p-2 bg-surface-container rounded-lg text-slate-500 hover:text-primary transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-4 py-2 bg-primary/20 text-primary rounded-lg text-xs font-bold">1</button>
+<button class="px-4 py-2 hover:bg-white/5 rounded-lg text-xs font-medium text-slate-500">2</button>
+<button class="px-4 py-2 hover:bg-white/5 rounded-lg text-xs font-medium text-slate-500">3</button>
+<button class="p-2 bg-surface-container rounded-lg text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Asymmetric Secondary Area: Orders & Terminal -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Recent Orders List (Glassmorphism Style) -->
+<div class="lg:col-span-2 bg-[#191f2f]/40 backdrop-blur-md rounded-2xl p-8 border border-white/5 self-start">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Recent Orders</h3>
+<p class="text-xs text-slate-500">Live transaction stream</p>
+</div>
+<button class="text-primary text-[10px] font-black tracking-widest uppercase hover:underline">View All Orders</button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-primary">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-mono text-[10px] text-slate-400">#890</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Alex Chen</p>
+<p class="text-[10px] text-slate-500">2 items • $342.00</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[9px] font-black rounded-full uppercase tracking-widest">Processing</span>
+<button class="material-symbols-outlined text-slate-500 hover:text-on-surface">more_vert</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-green-500">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-mono text-[10px] text-slate-400">#889</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Sarah Miller</p>
+<p class="text-[10px] text-slate-500">1 item • $89.00</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-3 py-1 bg-green-500/10 text-green-400 text-[9px] font-black rounded-full uppercase tracking-widest">Shipped</span>
+<button class="material-symbols-outlined text-slate-500 hover:text-on-surface">more_vert</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-slate-700">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-mono text-[10px] text-slate-400">#888</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Jordan Watts</p>
+<p class="text-[10px] text-slate-500">4 items • $1,120.00</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="px-3 py-1 bg-white/5 text-slate-500 text-[9px] font-black rounded-full uppercase tracking-widest">Delivered</span>
+<button class="material-symbols-outlined text-slate-500 hover:text-on-surface">more_vert</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Admin Terminal Widget -->
+<div class="bg-black rounded-2xl border border-white/10 p-6 flex flex-col h-[400px]">
+<div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="w-2 h-2 rounded-full bg-orange-400"></div>
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+</div>
+<span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest">System_Monitor v4.2</span>
+</div>
+<div class="flex-1 font-mono text-xs space-y-2 overflow-y-auto">
+<p class="text-green-500">[SYSTEM] Authentication successful.</p>
+<p class="text-green-500">[SYSTEM] Node "US-EAST-1" connected.</p>
+<p class="text-slate-400">&gt;&gt; fetching last_login_ip...</p>
+<p class="text-purple-300">&gt;&gt; 192.168.1.1 [Verified]</p>
+<p class="text-slate-400">&gt;&gt; indexing orders...</p>
+<p class="text-slate-400">&gt;&gt; sync complete in 42ms.</p>
+<div class="pt-4 flex gap-2">
+<span class="text-primary-container">$</span>
+<span class="animate-pulse w-2 h-4 bg-primary-container"></span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10">
+<input class="w-full bg-transparent border-none focus:ring-0 font-mono text-xs text-primary placeholder-slate-700" placeholder="Enter command..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-slate-950 mt-auto border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-screen-2xl mx-auto">
+<div>
+<h4 class="font-headline text-lg font-bold text-slate-200">The Geek Shop</h4>
+<p class="font-body text-xs tracking-widest text-slate-500 mt-2 uppercase">© 2024 THE GEEK SHOP. KINETIC LABORATORY DIV.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body text-xs tracking-widest text-slate-600 hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100 uppercase" href="#">Terms</a>
+<a class="font-body text-xs tracking-widest text-slate-600 hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100 uppercase" href="#">Privacy</a>
+<a class="font-body text-xs tracking-widest text-slate-600 hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100 uppercase" href="#">Discord</a>
+<a class="font-body text-xs tracking-widest text-slate-600 hover:text-purple-300 transition-opacity opacity-80 hover:opacity-100 uppercase" href="#">Github</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Bottom Nav for Mobile -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 md:hidden bg-[#0c1322]/80 backdrop-blur-lg border-t border-white/5 z-50">
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-4 py-1 hover:bg-white/5 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-purple-500/20 text-purple-200 rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter mt-1">Admin</span>
+</a>
+</nav>
+</body></html>
